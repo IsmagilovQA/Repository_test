@@ -13,8 +13,6 @@ public class ApplicationManager {
   private SessionHelper sessionHelper;
   private ContactHelper contactHelper;
 
-  public ApplicationManager() {
-  }
 
   public void init() {
     wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
