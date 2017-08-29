@@ -1,8 +1,11 @@
 package ru.qa.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import ru.qa.addressbook.model.ContactData;
 
 public class ContactHelper extends HelperBase {
@@ -43,5 +46,14 @@ public class ContactHelper extends HelperBase {
 
   public void updateContact() {
     click(By.xpath("//input[@name='update']"));
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.xpath("//input[@name='selected[]']"));
+  }
+
+  public void createContact(ContactData contact) {
+    fillContactForm(contact);
+    submitContactForm();
   }
 }
