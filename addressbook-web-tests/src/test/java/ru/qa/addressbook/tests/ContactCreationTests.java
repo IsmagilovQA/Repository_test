@@ -1,12 +1,16 @@
 package ru.qa.addressbook.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.qa.addressbook.model.ContactData;
+
+import java.util.List;
 
 public class ContactCreationTests extends TestBase {
 
   @Test
   public void testContactCreation() {
+    List<ContactData> before = app.getContactHelper().getContactList();
     app.getNavigationHelper().goToContactForm();
     app.getContactHelper().createContact(new ContactData(
             "my name 1",
@@ -16,6 +20,8 @@ public class ContactCreationTests extends TestBase {
             "Facebook",
             "New York, Baseinaja str 4, flat 7",
             "+380001234567"));
+    List<ContactData> after = app.getContactHelper().getContactList();
+    Assert.assertEquals(after.size(), before.size() + 1);
   }
 
 }
