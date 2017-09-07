@@ -1,12 +1,8 @@
 package ru.qa.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import ru.qa.addressbook.model.ContactData;
 
 import java.util.ArrayList;
@@ -67,17 +63,15 @@ public class ContactHelper extends HelperBase {
 
   public List<ContactData> getContactList() {
     List<ContactData> contacts = new ArrayList<ContactData>();
-    List<WebElement> element = wd.findElements(By.xpath(".//tr[@name='entry']"));
-    List<WebElement> cells = element.findElements(By.tagName("td"));
-    for (WebElement elements: element){
-      String firstName = elements.get(3).getText();
-      ContactData contact = new ContactData(firstName,
-              null,
-              null,
-              null,
-              null,
-              null,
-              null);
+    List<WebElement> elements = wd.findElements(By.xpath(".//tr[@name='entry']"));
+    for (WebElement element: elements){
+      List<WebElement> cells1 = element.findElements(By.tagName("td"));
+      String lastName = cells1.get(1).getText();
+      List<WebElement> cells2 = element.findElements(By.tagName("td"));
+      String firstName = cells2.get(2).getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      ContactData contact = new ContactData(firstName, null, lastName,
+              null, null, null, null, id);
       contacts.add(contact);
     }
     return contacts;
