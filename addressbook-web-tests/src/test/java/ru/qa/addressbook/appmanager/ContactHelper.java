@@ -52,7 +52,7 @@ public class ContactHelper extends HelperBase {
     wd.switchTo().alert().accept();
   }
 
-  public void updateContact() {
+  public void update() {
     click(By.xpath("//input[@name='update']"));
   }
 
@@ -65,11 +65,17 @@ public class ContactHelper extends HelperBase {
     submitContactForm();
   }
 
+  public void delete(int index) {
+    selectContact(index);
+    deleteContact();
+    deleteAlert();
+  }
+
   public int getContactCount() {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<ContactData> getContactList() {
+  public List<ContactData> list() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.xpath(".//tr[@name='entry']"));
     for (WebElement element: elements){
