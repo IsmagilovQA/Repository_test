@@ -5,7 +5,6 @@ import org.testng.annotations.Test;
 import ru.qa.addressbook.model.ContactData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class ContactModificationTests extends TestBase {
@@ -23,7 +22,8 @@ public class ContactModificationTests extends TestBase {
               "my nickname 1",
               "Facebook",
               "New York, Baseinaja str 4, flat 7",
-              "+380001234567"));
+              "+380001234567",
+              null));
     }
     List<ContactData> before = app.getContactHelper().getContactList();
     app.getContactHelper().editContact(before.size() + 1);
@@ -35,8 +35,9 @@ public class ContactModificationTests extends TestBase {
             "updated Facebook",
             "updated - New York, Baseinaja str 4, flat 7",
             "updated +380001234567",
-            before.get(before.size() - 1).getId());
-    app.getContactHelper().fillContactForm(contact);
+            before.get(before.size() - 1).getId(),
+            null);
+    app.getContactHelper().fillContactForm(contact, false);
     app.getContactHelper().updateContact();
     List<ContactData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size());

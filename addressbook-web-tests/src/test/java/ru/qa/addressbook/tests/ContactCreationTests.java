@@ -3,10 +3,8 @@ package ru.qa.addressbook.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.qa.addressbook.model.ContactData;
-import ru.qa.addressbook.model.GroupData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class ContactCreationTests extends TestBase {
@@ -21,7 +19,8 @@ public class ContactCreationTests extends TestBase {
             "my nickname 1",
             "Facebook",
             "New York, Baseinaja str 4, flat 7",
-            "+380001234567");
+            "+380001234567",
+            "name 1");
     app.getContactHelper().createContact(contact);
     List<ContactData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size() + 1);

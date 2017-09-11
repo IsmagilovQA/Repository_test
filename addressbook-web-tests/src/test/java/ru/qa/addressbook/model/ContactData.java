@@ -14,7 +14,7 @@ public class ContactData {
 
   public ContactData(String firstName, String middleName, String lastName,
                      String nickName, String company, String address,
-                     String mobile) {
+                     String mobile, String group) {
     this.firstName = firstName;
     this.middleName = middleName;
     this.lastName = lastName;
@@ -22,13 +22,14 @@ public class ContactData {
     this.company = company;
     this.address = address;
     this.mobile = mobile;
+    this.group = group;
     this.id = Integer.MAX_VALUE;
 
   }
 
   public ContactData(String firstName, String middleName, String lastName,
                      String nickName, String company, String address,
-                     String mobile, int id) {
+                     String mobile, int id, String group) {
     this.firstName = firstName;
     this.middleName = middleName;
     this.lastName = lastName;
@@ -36,6 +37,7 @@ public class ContactData {
     this.company = company;
     this.address = address;
     this.mobile = mobile;
+    this.group = group;
     this.id = id;
   }
 

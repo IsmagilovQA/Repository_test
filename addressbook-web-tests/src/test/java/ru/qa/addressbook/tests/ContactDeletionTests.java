@@ -21,7 +21,7 @@ public class ContactDeletionTests extends TestBase {
               "my nickname 1",
               "Facebook",
               "New York, Baseinaja str 4, flat 7",
-              "+380001234567"));
+              "+380001234567", null));
     }
     List<ContactData> before = app.getContactHelper().getContactList();
     app.getContactHelper().selectContact(before.size() - 1);
