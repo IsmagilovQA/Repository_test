@@ -7,8 +7,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.qa.addressbook.model.ContactData;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
@@ -36,8 +37,8 @@ public class ContactHelper extends HelperBase {
     }
   }
 
-  public void select(int index) {
-    wd.findElements(By.xpath("//input[@name='selected[]']")).get(index).click();
+  public void selectById(int id) {
+    click(By.cssSelector("a[href='edit.php?id=" + id + "']"));
   }
 
   public void edit(int index) {
@@ -65,8 +66,14 @@ public class ContactHelper extends HelperBase {
     submit();
   }
 
-  public void delete(int index) {
-    select(index);
+  public void modify(ContactData contact) {
+    selectById(contact.getId());
+    fillForm(contact, false);
+    update();
+  }
+
+  public void delete(ContactData contact) {
+    selectById(contact.getId());
     delete();
     deleteAlert();
   }
@@ -75,10 +82,10 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<ContactData> list() {
-    List<ContactData> contacts = new ArrayList<ContactData>();
+  public Set<ContactData> all() {
+    Set<ContactData> contacts = new HashSet<ContactData>();
     List<WebElement> elements = wd.findElements(By.xpath(".//tr[@name='entry']"));
-    for (WebElement element: elements){
+    for (WebElement element : elements) {
       List<WebElement> cells1 = element.findElements(By.tagName("td"));
       String lastName = cells1.get(1).getText();
       List<WebElement> cells2 = element.findElements(By.tagName("td"));
