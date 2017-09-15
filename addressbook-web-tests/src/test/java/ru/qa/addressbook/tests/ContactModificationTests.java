@@ -15,21 +15,32 @@ public class ContactModificationTests extends TestBase {
     app.goTo().homePage();
     if (app.contact().list().size() == 0) {
       app.goTo().contactPage();
-      app.contact().createContact(new ContactData("my name 1", "my middle name 1",
-              "my last name 1", "my nickname 1", "Facebook",
-              "New York, Baseinaja str 4, flat 7", "+380001234567", null));
+      app.contact().create(new ContactData()
+              .withFirstName("my name 1")
+              .withMiddleName("my middle name 1")
+              .withLastName("my last name 1")
+              .withNickName("my nickname 1")
+              .withCompany("Facebook")
+              .withAddress("New York, Baseinaja str 4, flat 7")
+              .withMobile("+380001234567"));
     }
   }
+
 
   @Test
   public void testContactModification() {
     List<ContactData> before = app.contact().list();
-    app.contact().editContact(before.size() + 1);
-    ContactData contact = new ContactData("updated name 1", "updated middle name 1",
-            "updated last name 1", "updated nickname 1", "updated Facebook",
-            "updated - New York, Baseinaja str 4, flat 7", "updated +380001234567",
-            before.get(before.size() - 1).getId(), null);
-    app.contact().fillContactForm(contact, false);
+    app.contact().edit(before.size() + 1);
+    ContactData contact = new ContactData()
+            .withFirstName("my name 1")
+            .withMiddleName("my middle name 1")
+            .withLastName("my last name 1")
+            .withNickName("my nickname 1")
+            .withCompany("Facebook")
+            .withAddress("New York, Baseinaja str 4, flat 7")
+            .withMobile("+380001234567")
+            .withId(before.get(before.size() - 1).getId());
+    app.contact().fillForm(contact, false);
     app.contact().update();
 
     List<ContactData> after = app.contact().list();

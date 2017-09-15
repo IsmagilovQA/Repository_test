@@ -1,46 +1,17 @@
 package ru.qa.addressbook.model;
 
 public class ContactData {
-  private final String firstName;
-  private final String middleName;
-  private final String lastName;
-  private final String nickName;
-  private final String company;
-  private final String address;
-  private final String mobile;
-  private int id;
+  private String firstName;
+  private String middleName;
+  private String lastName;
+  private String nickName;
+  private String company;
+  private String address;
+  private String mobile;
+  private int id = Integer.MAX_VALUE;;
   private String group;
 
-
-  public ContactData(String firstName, String middleName, String lastName,
-                     String nickName, String company, String address,
-                     String mobile, String group) {
-    this.firstName = firstName;
-    this.middleName = middleName;
-    this.lastName = lastName;
-    this.nickName = nickName;
-    this.company = company;
-    this.address = address;
-    this.mobile = mobile;
-    this.group = group;
-    this.id = Integer.MAX_VALUE;
-
-  }
-
-  public ContactData(String firstName, String middleName, String lastName,
-                     String nickName, String company, String address,
-                     String mobile, int id, String group) {
-    this.firstName = firstName;
-    this.middleName = middleName;
-    this.lastName = lastName;
-    this.nickName = nickName;
-    this.company = company;
-    this.address = address;
-    this.mobile = mobile;
-    this.group = group;
-    this.id = id;
-  }
-
+  // Getters
   public String getFirstName() {
     return firstName;
   }
@@ -77,8 +48,51 @@ public class ContactData {
     return id;
   }
 
-  public void setId(int id) {
+
+  // Setters
+  public ContactData withFirstName(String firstName) {
+    this.firstName = firstName;
+    return this;
+  }
+
+  public ContactData withMiddleName(String middleName) {
+    this.middleName = middleName;
+    return this;
+  }
+
+  public ContactData withLastName(String lastName) {
+    this.lastName = lastName;
+    return this;
+  }
+
+  public ContactData withNickName(String nickName) {
+    this.nickName = nickName;
+    return this;
+  }
+
+  public ContactData withCompany(String company) {
+    this.company = company;
+    return this;
+  }
+
+  public ContactData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public ContactData withMobile(String mobile) {
+    this.mobile = mobile;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
+  }
+
+  public ContactData withId(int id) {
     this.id = id;
+    return this;
   }
 
 
