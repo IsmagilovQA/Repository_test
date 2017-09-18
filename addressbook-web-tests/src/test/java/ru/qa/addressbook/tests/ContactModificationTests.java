@@ -23,7 +23,8 @@ public class ContactModificationTests extends TestBase {
               .withNickName("my nickname 1")
               .withCompany("Facebook")
               .withAddress("New York, Baseinaja str 4, flat 7")
-              .withMobile("+380001234567"));
+              .withMobile("+380001234567")
+              .withGroup("name 1"));
     }
   }
 
@@ -34,10 +35,10 @@ public class ContactModificationTests extends TestBase {
     ContactData modifiedContact = before.iterator().next();
     ContactData contact = new ContactData()
             .withFirstName("my name 1")
-            .withMiddleName("my middle name 1")
-            .withLastName("my last name 1")
-            .withNickName("my nickname 1")
-            .withCompany("Facebook")
+            .withMiddleName("updated middle name 1")
+            .withLastName("updated last name 1")
+            .withNickName("updated nickname 1")
+            .withCompany("updated Facebook")
             .withAddress("New York, Baseinaja str 4, flat 7")
             .withMobile("+380001234567")
             .withId(modifiedContact.getId());
@@ -45,6 +46,6 @@ public class ContactModificationTests extends TestBase {
     Contacts after = app.contact().all();
     assertEquals(after.size(), before.size());
 
-    assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
+    assertThat(after, equalTo(before.withoutAdded(modifiedContact).withAdded(contact)));
   }
 }

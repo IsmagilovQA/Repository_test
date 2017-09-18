@@ -23,20 +23,21 @@ public class ContactDeletionTests extends TestBase {
               .withNickName("my nickname 1")
               .withCompany("Facebook")
               .withAddress("New York, Baseinaja str 4, flat 7")
-              .withMobile("+380001234567"));
+              .withMobile("+380001234567")
+              .withGroup("name 1"));
     }
   }
 
 
   @Test
-  public void testContactDeletion() {
+  public void testContactDeletion() throws InterruptedException {
     Contacts before = app.contact().all();
     ContactData deletedContact = before.iterator().next();
     app.contact().delete(deletedContact);
     Contacts after = app.contact().all();
     assertEquals(after.size(), before.size() - 1);
 
-    assertThat(after, equalTo(before.without(deletedContact)));
+    assertThat(after, equalTo(before.withoutAdded(deletedContact)));
   }
 
 }
