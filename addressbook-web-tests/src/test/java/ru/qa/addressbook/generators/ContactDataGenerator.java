@@ -3,6 +3,7 @@ package ru.qa.addressbook.generators;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
+import com.thoughtworks.xstream.XStream;
 import ru.qa.addressbook.model.ContactData;
 
 import java.io.File;
@@ -20,6 +21,9 @@ public class ContactDataGenerator {
   @Parameter (names = "-f", description = "Target file")
   public String file;
 
+  @Parameter (names = "-d", description = "Data format")
+  public String format;
+
 
   public static void main(String[] args) throws IOException {
     ContactDataGenerator generator = new ContactDataGenerator();
@@ -34,11 +38,26 @@ public class ContactDataGenerator {
   }
 
   private void run() throws IOException {
-    List<ContactData> contacts = generateContactsCSV(count);
-    saveCSV(contacts, new File(file));
+    List<ContactData> contacts = generateContactsAsCsv(count);
+    if (format.equals("csv")) {
+      saveAsCsv(contacts, new File(file));
+    } else if (format.equals("xml")) {
+      saveAsXml(contacts, new File(file));
+    } else {
+      System.out.println("Unrecognized format " + format);
+    }
   }
 
-  private void saveCSV(List<ContactData> contacts, File file) throws IOException {
+  private void saveAsXml(List<ContactData> contacts, File file) throws IOException {
+    XStream xStream = new XStream();
+    xStream.processAnnotations(ContactData.class);
+    String xml = xStream.toXML(contacts);
+    Writer writer = new FileWriter(file);
+    writer.write(xml);
+    writer.close();
+  }
+
+  private void saveAsCsv(List<ContactData> contacts, File file) throws IOException {
     System.out.println(new File(".").getAbsolutePath());
     Writer writer = new FileWriter(file);
     for (ContactData contact: contacts) {
@@ -54,7 +73,7 @@ public class ContactDataGenerator {
     writer.close();
   }
 
-  private List<ContactData> generateContactsCSV(int count) {
+  private List<ContactData> generateContactsAsCsv(int count) {
     List<ContactData> contacts = new ArrayList<ContactData>();
     for (int i = 0; i < count; i++) {
       contacts.add(new ContactData()
