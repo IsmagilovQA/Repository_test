@@ -30,11 +30,13 @@ public class ContactHelper extends HelperBase {
     type(By.name("mobile"), contactData.getMobile());
     attach(By.name("photo"), contactData.getPhoto());
 
+    /*
     if (creation) {
         new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
       } else {
         Assert.assertFalse(isElementPresent(By.name("new_group")));
       }
+      */
     }
 
   public void selectById(int id) {

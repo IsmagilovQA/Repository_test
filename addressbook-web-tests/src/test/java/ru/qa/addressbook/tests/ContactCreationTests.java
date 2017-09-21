@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import ru.qa.addressbook.model.ContactData;
 import ru.qa.addressbook.model.Contacts;
 
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -16,17 +16,16 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ContactCreationTests extends TestBase {
 
   @DataProvider
-  public Iterator<Object[]> validContacts() {
+  public Iterator<Object[]> validContacts() throws IOException {
     List<Object[]> list = new ArrayList<Object[]>();
-    list.add(new Object[]{new ContactData().withFirstName("name 1").withMiddleName("middle name 1")
-            .withLastName("last name 1").withNickName("nickname 1").withCompany("Facebook")
-            .withAddress("NY, Baseinaja str 1, flat 1").withMobile("+380001234567").withGroup("name 1")});
-    list.add(new Object[]{new ContactData().withFirstName("name 2").withMiddleName("middle name 2")
-            .withLastName("last name 2").withNickName("nickname 2").withCompany("VK")
-            .withAddress("Boston, Baseinaja str 2, flat 2").withMobile("+380001234568").withGroup("name 2")});
-    list.add(new Object[]{new ContactData().withFirstName("name 3").withMiddleName("middle name 3")
-            .withLastName("last name 3").withNickName("nickname 3").withCompany("Fake")
-            .withAddress("LA, Baseinaja str 3, flat 3").withMobile("+380001234569").withGroup("name 3")});
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.csv")));
+    String line = reader.readLine();
+    while (line != null) {
+      String[] split = line.split(";");
+      list.add(new Object[] {new ContactData().withFirstName(split[0]).withMiddleName(split[1]).withLastName(split[2])
+      .withNickName(split[3]).withCompany(split[4]).withAddress(split[5]).withMobile(split[6])});
+      line = reader.readLine();
+    }
     return list.iterator();
   }
 
