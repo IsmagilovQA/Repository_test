@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.qa.addressbook.tests.GroupDeletionTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-09-23T20:18:02" hostname="GIRL-PC" time="3.02">
+  <properties/>
+  <testcase name="testGroupDeletion" classname="ru.qa.addressbook.tests.GroupDeletionTests" time="3.02"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

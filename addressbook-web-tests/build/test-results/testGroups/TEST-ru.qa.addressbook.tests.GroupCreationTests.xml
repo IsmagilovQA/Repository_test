@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.qa.addressbook.tests.GroupCreationTests" tests="5" skipped="0" failures="0" errors="0" timestamp="2017-09-23T20:17:34" hostname="GIRL-PC" time="20.971">
+  <properties/>
+  <testcase name="testGroupCreation[0](GroupData{name='test 0', id=2147483647})" classname="ru.qa.addressbook.tests.GroupCreationTests" time="4.425"/>
+  <testcase name="testGroupCreation[1](GroupData{name='test 1', id=2147483647})" classname="ru.qa.addressbook.tests.GroupCreationTests" time="3.833"/>
+  <testcase name="testGroupCreation[2](GroupData{name='test 2', id=2147483647})" classname="ru.qa.addressbook.tests.GroupCreationTests" time="3.965"/>
+  <testcase name="testGroupCreation[3](GroupData{name='test 3', id=2147483647})" classname="ru.qa.addressbook.tests.GroupCreationTests" time="4.412"/>
+  <testcase name="testGroupCreation[4](GroupData{name='test 4', id=2147483647})" classname="ru.qa.addressbook.tests.GroupCreationTests" time="4.335"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

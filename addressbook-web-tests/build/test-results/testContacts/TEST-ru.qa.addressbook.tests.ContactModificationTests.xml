@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.qa.addressbook.tests.ContactModificationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-09-23T20:16:38" hostname="GIRL-PC" time="9.646">
+  <properties/>
+  <testcase name="testContactModification" classname="ru.qa.addressbook.tests.ContactModificationTests" time="9.646"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[1506197802088	addons.productaddons	INFO	sending request to: https://aus5.mozilla.org/update/3/GMP/52.3.0/20170802111520/WINNT_x86-msvc-x86/en-US/esr/Windows_NT%206.1.1.0%20(x86)/default/default/update.xml
+1506197802805	addons.productaddons	INFO	Completed downloading document
+1506197803429	addons.productaddons	INFO	downloadXHR File download. status=200
+1506197803437	addons.productaddons	INFO	Downloaded file will be saved to C:\Users\GIRL\AppData\Local\Temp\tmpaddon-a57a50
+1506197804222	addons.productaddons	INFO	downloadXHR File download. status=200
+1506197804230	addons.productaddons	INFO	Downloaded file will be saved to C:\Users\GIRL\AppData\Local\Temp\tmpaddon-39b492
+]]></system-err>
+</testsuite>
